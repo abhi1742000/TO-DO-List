@@ -10,7 +10,7 @@ const TasksList = ({ tasks, deleteTaskHandler }) => {
             key={key}
             className="col my-2 my-md-3  my-lg-4 d-flex align-items-stretch"
           >
-            <TaskCard task={task} deleteTaskHandler={ deleteTaskHandler }/>
+            <TaskCard task={task} deleteTaskHandler={deleteTaskHandler} />
           </div>
         );
       })}

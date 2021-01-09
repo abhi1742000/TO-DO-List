@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from 'sweetalert2'
 
 const AddItem = ({ addTaskHandler }) => {
   const [formData, setFormData] = useState({ name: "", priority: "moderate" });
@@ -23,6 +24,17 @@ const AddItem = ({ addTaskHandler }) => {
 
   const submitButton = (event) => {
     event.preventDefault();
+    const { name, priority } = formData;
+
+    if (!name || !priority) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Please enter task name and select a priority'
+      })
+
+      return;
+    }
+
     addTaskHandler({ ...formData, id: Date.now()})
     setFormData({ name: "", priority: "moderate" });
   };
@@ -48,7 +60,7 @@ const AddItem = ({ addTaskHandler }) => {
             onChange={handlePriorityChange}
             value={priority}
           >
-            <option>Choose Option</option>
+            <option value="">Choose Option</option>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
